@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora financeira</title>
+    <link rel="stylesheet" href="CSSdaCalc.css">
+</head>
+<body>
+    
+    <div class="header">
+        <div class="container1">
+        <div class="container2">
+            <h1 class="titulo">Calc. Financeira</h1>
+            <ul class="navbar">
+                <li><a href="Inicial.html">Inicial</a></li>
+                <li>Simulador</li>
+                <li>|</li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="Cadastro.html">Cadastro</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    <div id ="div_prodKg" style="display:flex; color:#56070c;justify-content:center;align-items:center">
+    Produção em kg: <input type="text" id="input_qtdProduzida" placeholder="Prod. em kg"> kg 
+</div><br>
+
+    <div id ="div_precKg" style="display:flex; color:#56070c;justify-content:center;align-items:center">
+    Preço de produção por kg: <input type="text" id="input_PrecoProducao" placeholder="Preço prod. em kg" > R$ 
+</div><br>
+    <div id ="div_porcPerda" style="display:flex; color:#56070c;justify-content:center;align-items:center">
+    Porcentagem de perda: <input type="text" id="input_perda" placeholder="Porc. de perda" > % 
+    </div><br>
+    <a style="display:flex; justify-content:center">
+    <button onclick="CalcularPrejuizo()">
+        Prejuízo em R$
+    </button>
+    </a>
+    <div id="div_pirarucu" style="display:flex; color:#56070c;justify-content:center;align-items:center"></div>
+    <div  id="div_preju" style="display:flex; color:#8b0000;justify-content:center;align-items:center"></div>
+    <div  id="div_salvo" style="display:flex; color:aquamarine;justify-content:center;align-items:center"></div>
+</body>
+</html>
+
+<script>
+    function CalcularPrejuizo(){
+  var qtdPeixe = Number(input_qtdProduzida.value)
+  var PrecoProducao = Number(input_PrecoProducao.value)
+  var gasto = qtdPeixe * PrecoProducao
+  var Porcentagem = Number(input_perda.value)
+  var contaPorc = (Porcentagem/100)
+  var prejuizo = gasto * contaPorc
+  var salvo = (contaPorc - 0.05) * gasto
+
+/* caso o usuário não saiba a porcentagem, automaticamente o if abaixo 
+assumirá a porcentagem como 15% por meio do comando or atrelado a null ou 0*/
+
+  if(Porcentagem == null || Porcentagem <= 0){ 
+
+    var Porcentagem = 15
+    var contaPorc = (Porcentagem/100)
+    var prejuizo = gasto * contaPorc
+  var salvo = (contaPorc - 0.05) * gasto
+  }
+
+  div_pirarucu.innerHTML = `
+  Com a produção de peixes de ${qtdPeixe} kg com um preço de produção em R$ ${PrecoProducao} ,sendo a porcentagem de perda em ${Porcentagem} %
+  o seu ganho foi de R$ ${gasto}<br>`
+  div_preju.innerHTML = `mas o seu prejuízo foi de R$ ${prejuizo}<br>`
+  if(contaPorc <= 0.05) {div_salvo.innerHTML = `
+    Com nosso produto você podera salvar toda sua produção 😮`
+  }
+  else{
+    div_salvo.innerHTML = `
+    Com nosso produto você salvara R$ ${salvo} 😎`
+  }
+  }
+</script>
