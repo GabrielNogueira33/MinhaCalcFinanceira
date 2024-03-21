@@ -51,7 +51,7 @@
   var Porcentagem = Number(input_perda.value)
   var contaPorc = (Porcentagem/100)
   var prejuizo = gasto * contaPorc
-  var salvo = (contaPorc - 0.05) * gasto
+  var salvo = (contaPorc - 0.005) * gasto
 
 /* caso o usuário não saiba a porcentagem, automaticamente o if abaixo 
 assumirá a porcentagem como 15% por meio do comando or atrelado a null ou 0*/
@@ -61,19 +61,16 @@ assumirá a porcentagem como 15% por meio do comando or atrelado a null ou 0*/
     var Porcentagem = 15
     var contaPorc = (Porcentagem/100)
     var prejuizo = gasto * contaPorc
-  var salvo = (contaPorc - 0.05) * gasto
+  var salvo = (contaPorc - 0.005) * gasto
   }
 
   div_pirarucu.innerHTML = `
   Com a produção de peixes de ${qtdPeixe} kg com um preço de produção em R$ ${PrecoProducao} ,sendo a porcentagem de perda em ${Porcentagem} %
   o seu ganho foi de R$ ${gasto}<br>`
   div_preju.innerHTML = `mas o seu prejuízo foi de R$ ${prejuizo}<br>`
-  if(contaPorc <= 0.05) {div_salvo.innerHTML = `
-    Com nosso produto você podera salvar toda sua produção 😮`
-  }
-  else{
-    div_salvo.innerHTML = `
+
+  div_salvo.innerHTML = `
     Com nosso produto você salvara R$ ${salvo} 😎`
-  }
+  
   }
 </script>
